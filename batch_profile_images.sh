@@ -1,7 +1,7 @@
 #!/bin/bash
 
 
-# batch download all profile images of users given in stdin (in format user:name) to directory $1/$username
+# batch download all profile images of users given in stdin (in format user[:name] - the name part is optional, it will be ignored) to directory $1/$user
 
 images_dir="$1"
 
@@ -12,7 +12,7 @@ max_running=10
 
 IFS=':'
 
-while read username
+while read username name;
 do
 	
 	while [[ $(jobs | wc -l) -ge $max_running ]]
